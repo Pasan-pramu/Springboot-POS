@@ -41,6 +41,7 @@ public class CustomerServiceIMPL  implements CustomerService {
         if(customerRepo.existsById(customerUpdateDTO.getCustomerId())){
              Customer customer = customerRepo.getReferenceById(customerUpdateDTO.getCustomerId());
 
+
              customer.setCustomerName(customerUpdateDTO.getCustomerName());
             customer.setCustomerAddress(customerUpdateDTO.getCustomerAddress());
             customer.setCustomerSalary(customerUpdateDTO.getCustomerSalary());
