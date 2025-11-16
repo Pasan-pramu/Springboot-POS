@@ -3,9 +3,13 @@ package com.springbootacademy.pos.controller;
 
 import com.springbootacademy.pos.dto.CustomerDTO;
 import com.springbootacademy.pos.dto.request.CustomerUpdateDTO;
+import com.springbootacademy.pos.entity.Customer;
+import com.springbootacademy.pos.repo.CustomerRepo;
 import com.springbootacademy.pos.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customers")
@@ -14,9 +18,11 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private CustomerRepo customerRepo;
 
     @PostMapping("/save")
-    public String savecustomer(@RequestBody CustomerDTO customerDTO){
+    public String savecustomer(@RequestBody CustomerDTO customerDTO) {
         //String message= customerDTO.getCustomerName();
         //return message;
 
@@ -26,8 +32,8 @@ public class CustomerController {
     }
 
     @PutMapping("/update")
-    public String updateCustomer(@RequestBody CustomerUpdateDTO customerUpdateDTO){
-       String message = customerService.updateCustomer(customerUpdateDTO);
+    public String updateCustomer(@RequestBody CustomerUpdateDTO customerUpdateDTO) {
+        String message = customerService.updateCustomer(customerUpdateDTO);
         return message;
 
     }
@@ -37,12 +43,27 @@ public class CustomerController {
             path = "/get-by-id",
             params = "id"
     )
-    public CustomerDTO getCustomerById( @RequestParam(value = "id")int customerId) {
+    public CustomerDTO getCustomerById(@RequestParam(value = "id") int customerId) {
 
-        CustomerDTO customerDTO= customerService.getCustomerById(customerId);
+        CustomerDTO customerDTO = customerService.getCustomerById(customerId);
         return customerDTO;
 
     }
 
-
+        @GetMapping(
+                path="get-all-customers"
+        )
+    public List<CustomerDTO> getAllCustomers(){
+        List<CustomerDTO>allCustomers= customerService.getAllCustomers();
+        return allCustomers;
+        }
 }
+
+
+
+
+
+
+
+
+
