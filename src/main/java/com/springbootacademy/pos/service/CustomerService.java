@@ -8,5 +8,7 @@ public interface CustomerService {
 
     public String saveCustomer(CustomerDTO customerDTO);
 
-    void updateCustomer(CustomerUpdateDTO customerUpdateDTO);
+    String updateCustomer(CustomerUpdateDTO customerUpdateDTO);
+
+    CustomerDTO getCustomerById(int customerId);
 }
